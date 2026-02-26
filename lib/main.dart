@@ -42,6 +42,8 @@ class SlamBookData
     final String zodiacSign;
     final String favoriteSong;
     final String favoriteHobby;
+    final String? favoritePic;
+    final String? outsidePic;
 
     SlamBookData({
         required this.nickName,
@@ -54,17 +56,19 @@ class SlamBookData
         required this.favoriteColor,
         required this.imagePath,
         required this.favoriteSong,
-        required this.favoriteHobby
+        required this.favoriteHobby,
+        this.favoritePic,
+        this.outsidePic
 
     });
 }
 
 final List<SlamBookData> mySlamBook = [
   SlamBookData(nickName: "Drei", name: "John Andrei Dimasaka", birthday: "04-21-2003", age: "22", zodiacSign: 'assets/taurus.png', favoriteMovie: 'assets/goodfellas.jpg', favoriteFood: "Sisig", favoriteColor: "Blue", imagePath: 'assets/andrei.jpeg', favoriteSong: "Eleven Weeks", favoriteHobby: 'Gaming'),
-  SlamBookData(nickName: "Elong", name: 'Angelo Delos Santos Iyo', birthday: "10-13-2002", age: '23', zodiacSign: 'assets/libra.jpeg', favoriteMovie: 'assets/greenmile.jpg', favoriteFood: "Ginisang Munggo", favoriteColor: "Black", imagePath: 'assets/elong.jpg', favoriteSong: "Wings", favoriteHobby: "Gaming"),
-  SlamBookData(nickName: "Ron", name: "Ron Sherwin Bugarin", birthday: "09-06-2004", age: "21", zodiacSign: 'assets/virgo.jpeg', favoriteMovie: 'assets/evangelion.jpg', favoriteFood: '24 Chicken', favoriteColor: "Black", imagePath: 'assets/ronbaliw.jpeg', favoriteSong: 'Why am I still in LA', favoriteHobby: "Gaming"),
-  SlamBookData(nickName: "Lek", name: "Leonardo Jualo", birthday: "05-05-2003", age: "22", zodiacSign: 'assets/taurus.png', favoriteMovie: 'assets/onepiece.jpeg', favoriteFood: "Kaldereta", favoriteColor: "Green", imagePath: 'assets/jualo.jpeg', favoriteSong: "Afterthoughts", favoriteHobby: "Gaming"),
-  SlamBookData(nickName: "Marky", name: "Mark Joseph D. Amarille", birthday: "12-24-2004", age: "21", zodiacSign: 'assets/capricorn.jpeg', favoriteMovie: 'assets/onepiece.jpeg', favoriteFood: "Fried Chicken", favoriteColor: "Blue", imagePath: 'assets/mark.jpeg', favoriteSong: "Drag me down", favoriteHobby: "Reading")
+  SlamBookData(nickName: "Elong", name: 'Angelo Delos Santos Iyo', birthday: "10-13-2002", age: '23', zodiacSign: 'assets/libra.jpeg', favoriteMovie: 'assets/greenmile.jpg', favoriteFood: "Ginisang Munggo", favoriteColor: "Black", imagePath: 'assets/elong.jpg', favoriteSong: "Wings", favoriteHobby: "Gaming", favoritePic:'assets/iyodrei.jpeg' , outsidePic:'assets/4pic.jpeg' ),
+  SlamBookData(nickName: "Ron", name: "Ron Sherwin Bugarin", birthday: "09-06-2004", age: "21", zodiacSign: 'assets/virgo.jpeg', favoriteMovie: 'assets/evangelion.jpg', favoriteFood: '24 Chicken', favoriteColor: "Black", imagePath: 'assets/ronbaliw.jpeg', favoriteSong: 'Why am I still in LA', favoriteHobby: "Gaming", favoritePic:'assets/rondrei.jpg' , outsidePic:'assets/lunita.jpg' ),
+  SlamBookData(nickName: "Lek", name: "Leonardo Jualo", birthday: "05-05-2003", age: "22", zodiacSign: 'assets/taurus.png', favoriteMovie: 'assets/onepiece.jpeg', favoriteFood: "Kaldereta", favoriteColor: "Green", imagePath: 'assets/jualo.jpeg', favoriteSong: "Afterthoughts", favoriteHobby: "Gaming", favoritePic:'assets/jumpscare.jpeg' , outsidePic:'assets/nightmares.jpeg' ),
+  SlamBookData(nickName: "Matt", name: "Jeff Matthew Molina", birthday: "09-02-2004", age: "21", zodiacSign: 'assets/virgo.jpeg', favoriteMovie: 'assets/everything.jpg', favoriteFood: "Ensaymada", favoriteColor: "Black", imagePath: 'assets/matthew.jpg', favoriteSong: "Hold On Til May", favoriteHobby: "Using Instruments", favoritePic: 'assets/mattdrei.jpeg', outsidePic:'assets/bilyars.jpeg' )
 ];
 
 class SlamBookLayout extends StatelessWidget
@@ -295,7 +299,69 @@ class SlamBookLayout extends StatelessWidget
                                             )
                                         )
                                     ],
-                                )
+                                ),
+                                if (data.outsidePic != null && data.favoritePic != null)
+                                    Column(
+                                        children: [
+                                            Row(
+                                                spacing: 40, children:
+                                            [
+
+                                                Container(
+                                                    alignment: Alignment.center,
+                                                    width: 170,
+                                                    decoration: BoxDecoration(
+                                                        color: Color(0xfdf8f0ed),
+                                                        border: Border.all(color: Colors
+                                                            .black),
+                                                        borderRadius: BorderRadius
+                                                            .circular(10)
+                                                    ),
+                                                    child: Text('Favorite Photo',
+                                                        style: TextStyle(
+                                                            fontSize: 24,
+                                                            fontFamily: 'WinkyMilky',
+
+                                                        ),),
+                                                ),
+
+                                                Container(
+                                                    alignment: Alignment.center,
+                                                    width: 170,
+                                                    decoration: BoxDecoration(
+                                                        color: Color(0xfdf8f0ed),
+                                                        border: Border.all(color: Colors
+                                                            .black),
+                                                        borderRadius: BorderRadius
+                                                            .circular(10)
+                                                    ),
+                                                    child: Text('Hangout Photo',
+                                                        style: TextStyle(
+                                                            fontSize: 24,
+                                                            fontFamily: 'WinkyMilky',
+
+                                                        ),),
+                                                ),
+                                            ]
+                                            ),
+                                            Row(
+                                                spacing: 40, children: [
+                                                SizedBox(
+                                                    height: 170,
+                                                    width: 170,
+                                                    child: PictureWidget(
+                                                        path: data.favoritePic!,)
+                                                ),
+                                                SizedBox(
+                                                    height: 170,
+                                                    width: 170,
+                                                    child: PictureWidget(
+                                                        path: data.outsidePic!,)
+                                                )
+                                            ],
+                                            )
+                                        ],
+                                    )
                             ]
                         )
                     ],

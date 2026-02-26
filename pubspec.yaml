@@ -73,6 +73,17 @@ flutter:
     - assets/virgo.jpeg
     - assets/andrei.jpeg
     - assets/goodfellas.jpg
+    - assets/4pic.jpeg
+    - assets/bilyars.jpeg
+    - assets/everything.jpg
+    - assets/iyodrei.jpeg
+    - assets/jumpscare.jpeg
+    - assets/mattdrei.jpeg
+    - assets/matthew.jpg
+    - assets/nightmares.jpeg
+    - assets/rondrei.jpg
+    - assets/lunita.jpg
+
   fonts:
     - family: WinkyMilky
       fonts:

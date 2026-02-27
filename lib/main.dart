@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 void main()
@@ -11,21 +9,24 @@ class MyApp extends StatelessWidget
 {
     const MyApp({super.key});
 
-    // This widget is the root of your application.
     @override
-    Widget build(BuildContext context)
+    Widget build(BuildContext context) 
     {
-        return MaterialApp(home: Material(type: MaterialType.transparency, child: Scaffold(
+        return MaterialApp(
+            home: Material(
+                type: MaterialType.transparency,
+                child: Scaffold(
                     body: PageView.builder(
-                        // Set to Axis.horizontal if you prefer side-to-side
                         scrollDirection: Axis.vertical,
-                        itemCount: 5,
+                        itemCount: mySlamBook.length,
                         itemBuilder: (context, index)
                         {
-                          return SlamBookLayout(data: mySlamBook[index]) ; // This returns one full-screen card per page
+                            return SlamBookLayout(data: mySlamBook[index]);
                         },
                     ),
-                )));
+                ),
+            ),
+        );
     }
 }
 
@@ -58,373 +59,352 @@ class SlamBookData
         required this.favoriteSong,
         required this.favoriteHobby,
         this.favoritePic,
-        this.outsidePic
-
+        this.outsidePic,
     });
 }
 
 final List<SlamBookData> mySlamBook = [
-  SlamBookData(nickName: "Drei", name: "John Andrei Dimasaka", birthday: "04-21-2003", age: "22", zodiacSign: 'assets/taurus.png', favoriteMovie: 'assets/goodfellas.jpg', favoriteFood: "Sisig", favoriteColor: "Blue", imagePath: 'assets/andrei.jpeg', favoriteSong: "Eleven Weeks", favoriteHobby: 'Gaming'),
-  SlamBookData(nickName: "Elong", name: 'Angelo Delos Santos Iyo', birthday: "10-13-2002", age: '23', zodiacSign: 'assets/libra.jpeg', favoriteMovie: 'assets/greenmile.jpg', favoriteFood: "Ginisang Munggo", favoriteColor: "Black", imagePath: 'assets/elong.jpg', favoriteSong: "Wings", favoriteHobby: "Gaming", favoritePic:'assets/iyodrei.jpeg' , outsidePic:'assets/4pic.jpeg' ),
-  SlamBookData(nickName: "Ron", name: "Ron Sherwin Bugarin", birthday: "09-06-2004", age: "21", zodiacSign: 'assets/virgo.jpeg', favoriteMovie: 'assets/evangelion.jpg', favoriteFood: '24 Chicken', favoriteColor: "Black", imagePath: 'assets/ronbaliw.jpeg', favoriteSong: 'Why am I still in LA', favoriteHobby: "Gaming", favoritePic:'assets/rondrei.jpg' , outsidePic:'assets/lunita.jpg' ),
-  SlamBookData(nickName: "Lek", name: "Leonardo Jualo", birthday: "05-05-2003", age: "22", zodiacSign: 'assets/taurus.png', favoriteMovie: 'assets/onepiece.jpeg', favoriteFood: "Kaldereta", favoriteColor: "Green", imagePath: 'assets/jualo.jpeg', favoriteSong: "Afterthoughts", favoriteHobby: "Gaming", favoritePic:'assets/jumpscare.jpeg' , outsidePic:'assets/nightmares.jpeg' ),
-  SlamBookData(nickName: "Matt", name: "Jeff Matthew Molina", birthday: "09-02-2004", age: "21", zodiacSign: 'assets/virgo.jpeg', favoriteMovie: 'assets/everything.jpg', favoriteFood: "Ensaymada", favoriteColor: "Black", imagePath: 'assets/matthew.jpg', favoriteSong: "Hold On Til May", favoriteHobby: "Using Instruments", favoritePic: 'assets/mattdrei.jpeg', outsidePic:'assets/bilyars.jpeg' )
+    SlamBookData(nickName: "Drei", name: "John Andrei Dimasaka", birthday: "04-21-2003", age: "22", zodiacSign: 'assets/taurus.png', favoriteMovie: 'assets/goodfellas.jpg', favoriteFood: "Sisig", favoriteColor: "Blue", imagePath: 'assets/andrei.jpeg', favoriteSong: "Eleven Weeks", favoriteHobby: 'Gaming'),
+    SlamBookData(nickName: "Elong", name: 'Angelo Delos Santos Iyo', birthday: "10-13-2002", age: '23', zodiacSign: 'assets/libra.jpeg', favoriteMovie: 'assets/greenmile.jpg', favoriteFood: "Ginisang Munggo", favoriteColor: "Black", imagePath: 'assets/elong.jpg', favoriteSong: "Wings", favoriteHobby: "Gaming", favoritePic: 'assets/iyodrei.jpeg', outsidePic: 'assets/4pic.jpeg'),
+    SlamBookData(nickName: "Ron", name: "Ron Sherwin Bugarin", birthday: "09-06-2004", age: "21", zodiacSign: 'assets/virgo.jpeg', favoriteMovie: 'assets/evangelion.jpg', favoriteFood: '24 Chicken', favoriteColor: "Black", imagePath: 'assets/ronbaliw.jpeg', favoriteSong: 'Why am I still in LA', favoriteHobby: "Gaming", favoritePic: 'assets/rondrei.jpg', outsidePic: 'assets/lunita.jpg'),
+    SlamBookData(nickName: "Lek", name: "Leonardo Jualo", birthday: "05-05-2003", age: "22", zodiacSign: 'assets/taurus.png', favoriteMovie: 'assets/onepiece.jpeg', favoriteFood: "Kaldereta", favoriteColor: "Green", imagePath: 'assets/jualo.jpeg', favoriteSong: "Afterthoughts", favoriteHobby: "Gaming", favoritePic: 'assets/jumpscare.jpeg', outsidePic: 'assets/nightmares.jpeg'),
+    SlamBookData(nickName: "Matt", name: "Jeff Matthew Molina", birthday: "09-02-2004", age: "21", zodiacSign: 'assets/virgo.jpeg', favoriteMovie: 'assets/everything.jpg', favoriteFood: "Ensaymada", favoriteColor: "Black", imagePath: 'assets/matthew.jpg', favoriteSong: "Hold On Til May", favoriteHobby: "Using Instruments", favoritePic: 'assets/mattdrei.jpeg', outsidePic: 'assets/bilyars.jpeg'),
 ];
+
+class _Dims
+{
+    final double avatarRadius;
+    final double movieBoxSize;
+    final double photoBoxSize;
+    final double titleFontSize;
+    final double labelFontSize;
+    final double nameFontSize;
+    final double mainFontSize;
+    final double cardWidth;
+    final double padding;
+    final double spacing;
+
+    const _Dims({
+        required this.avatarRadius,
+        required this.movieBoxSize,
+        required this.photoBoxSize,
+        required this.titleFontSize,
+        required this.labelFontSize,
+        required this.nameFontSize,
+        required this.mainFontSize,
+        required this.cardWidth,
+        required this.padding,
+        required this.spacing,
+    });
+
+    factory _Dims.of(BuildContext context)
+    {
+        final width = MediaQuery.sizeOf(context).width;
+        if (width < 400) 
+        {
+            return const _Dims(
+                avatarRadius: 40,
+                movieBoxSize: 110,
+                photoBoxSize: 110,
+                titleFontSize: 50,
+                labelFontSize: 11,
+                nameFontSize: 11,
+                mainFontSize: 10,
+                cardWidth: 130,
+                padding: 10,
+                spacing: 6,
+            );
+        }
+        else if (width < 600) 
+        {
+            return const _Dims(
+                avatarRadius: 50,
+                movieBoxSize: 140,
+                photoBoxSize: 130,
+                titleFontSize: 65,
+                labelFontSize: 13,
+                nameFontSize: 13,
+                mainFontSize: 12,
+                cardWidth: 155,
+                padding: 14,
+                spacing: 8,
+            );
+        }
+        else if (width < 900) 
+        {
+            return const _Dims(
+                avatarRadius: 60,
+                movieBoxSize: 170,
+                photoBoxSize: 160,
+                titleFontSize: 75,
+                labelFontSize: 16,
+                nameFontSize: 16,
+                mainFontSize: 14,
+                cardWidth: 190,
+                padding: 20,
+                spacing: 10,
+            );
+        }
+        else 
+        {
+            return const _Dims(
+                avatarRadius: 75,
+                movieBoxSize: 210,
+                photoBoxSize: 200,
+                titleFontSize: 90,
+                labelFontSize: 20,
+                nameFontSize: 18,
+                mainFontSize: 16,
+                cardWidth: 240,
+                padding: 28,
+                spacing: 14,
+            );
+        }
+    }
+}
 
 class SlamBookLayout extends StatelessWidget
 {
-  final SlamBookData data;
-    const SlamBookLayout({
-        super.key,
-        required this.data
-    });
+    final SlamBookData data;
+    const SlamBookLayout({super.key, required this.data});
 
     @override
-    Widget build(BuildContext context)
+    Widget build(BuildContext context) 
     {
+        final dimensions = _Dims.of(context);
         return Container(
-            height: double.infinity,
             width: double.infinity,
+            height: double.infinity,
             color: Colors.white,
-            child: Padding(padding: EdgeInsets.all(20),
-                child: Stack(
+            child: SingleChildScrollView(
+                padding: EdgeInsets.all(dimensions.padding),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                        Column(
-                            spacing: 20,
+                        _Header(d: dimensions),
+                        SizedBox(height: dimensions.spacing),
+
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                                 Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                        Align(
-                                            alignment: Alignment.topCenter,
-                                            child: Text('ALL ABOUT',
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontFamily: 'Monserrat',
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.w400,
-                                                    letterSpacing: 2.0
-                                                )),
-                                        ),
-                                        Align(
-                                            child: Text('ME',
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontFamily: 'WinkyMilky',
-                                                    fontSize: 75,
-                                                    fontWeight: FontWeight.bold,
-                                                    letterSpacing: 3.0,
-                                                )),
-                                        )
-                                    ]
-                                ),
-                                Row(
-                                    spacing: 20,
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                        Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            spacing: 10,
-                                            children: [
-                                                NameTagWidget(text: data.nickName),
-                                                NameTagWidget(text: data.birthday),
-                                                NameTagWidget(text: data.age)
-
-                                            ]
-                                        ),
-                                        Column(
-                                            spacing: 10,
-                                            children: [
-                                                Container(
-                                                    alignment: Alignment.center,
-                                                    width: 170,
-                                                    decoration: BoxDecoration(
-                                                        color: Color(0xfdf8f0ed),
-                                                        border: Border.all(color: Colors.black),
-                                                        borderRadius: BorderRadius.circular(10)
-                                                    ),
-                                                    child: Text('Favorite Movie',
-                                                        style: TextStyle(
-                                                            fontSize: 24,
-                                                            fontFamily: 'WinkyMilky',
-
-                                                        ),),
-                                                ),
-                                                SizedBox(
-                                                    height: 170,
-                                                    width: 170,
-                                                    child: PictureWidget(path: data.favoriteMovie,)
-                                                )
-                                            ]
-                                        )
-                                    ]
-                                ),
-                                Row(
-                                    spacing: 10,
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                        BoxWidget(title: 'Zodiac Sign', path: data.zodiacSign, color: Color(0xfffeefc8),),
-                                        BoxWidget(path: data.imagePath, title: data.name, color: Color(0xff96f2d7),)
+                                        NameTagWidget(text: data.nickName, dimensions: dimensions),
+                                        SizedBox(height: dimensions.spacing),
+                                        NameTagWidget(text: data.birthday, dimensions: dimensions),
+                                        SizedBox(height: dimensions.spacing),
+                                        NameTagWidget(text: data.age, dimensions: dimensions),
                                     ],
                                 ),
-                                Row(
-                                    spacing: 10,
+                                SizedBox(width: dimensions.spacing * 2),
+                                Column(
                                     children: [
                                         Container(
-                                            width: 190,
-                                            padding: const EdgeInsets.all(5.0),
+                                            alignment: Alignment.center,
+                                            width: dimensions.movieBoxSize,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(10),
-                                                color: Color(0xfdffd8a8),
-                                                border: Border.all(color: Colors.black)
+                                                color: const Color(0xFFF8F0ED),
+                                                border: Border.all(color: Colors.black),
+                                                borderRadius: BorderRadius.circular(10),
                                             ),
-                                            child:
-                                            Column(
-                                                children: [
-                                                    Text(
-                                                        "FAVORITE FOOD",
-                                                        style: TextStyle(
-                                                            letterSpacing: 1.8,
-                                                            fontSize: 16,
-                                                            fontFamily: "WinkyMilky"
-                                                        ),
-                                                    ),
-                                                    Text(
-                                                        data.favoriteFood,
-                                                        style: TextStyle(
-                                                            letterSpacing: 1.8,
-                                                            fontSize: 16,
-                                                            fontFamily: "WinkyMilky"
-                                                        ),
-                                                    )
-                                                ],
-                                            )
+                                            child: Text(
+                                                'Favorite Movie',
+                                                style: TextStyle(fontSize: dimensions.labelFontSize, fontFamily: 'WinkyMilky'),
+                                            ),
                                         ),
-                                        Container(
-                                            width: 190,
-                                            padding: const EdgeInsets.all(5.0),
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(10),
-                                                color: Color(0xfda5d8ff),
-                                                border: Border.all(color: Colors.black)
-                                            ),
-                                            child: Column(
-                                                children: [
-                                                    Text(
-                                                        "FAVORITE COLOR",
-                                                        style: TextStyle(
-                                                            letterSpacing: 1.8,
-                                                            fontSize: 16,
-                                                            fontFamily: "WinkyMilky"
-                                                        ),
-                                                    ),
-                                                    Text(
-                                                        data.favoriteColor,
-                                                        style: TextStyle(
-                                                            letterSpacing: 1.8,
-                                                            fontSize: 16,
-                                                            fontFamily: "WinkyMilky"
-                                                        ),
-                                                    )
-                                                ],
-                                            )
-                                        )
-                                    ],
-                                ),
-                                Row(
-                                    spacing: 10,
-                                    children: [
-                                        Container(
-                                            height: 60,
-                                            width: 190,
-                                            padding: const EdgeInsets.all(5.0),
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(10),
-                                                color: Color(0xfdd0bfff),
-                                                border: Border.all(color: Colors.black)
-                                            ),
-                                            child:
-                                            Column(
-                                                children: [
-                                                    Text(
-                                                        "FAVORITE SONG",
-                                                        style: TextStyle(
-                                                            letterSpacing: 1.8,
-                                                            fontSize: 16,
-                                                            fontFamily: "WinkyMilky"
-                                                        ),
-                                                    ),
-                                                    Text(
-                                                        data.favoriteSong,
-                                                        style: TextStyle(
-                                                            letterSpacing: 1.8,
-                                                            fontSize: 16,
-                                                            fontFamily: "WinkyMilky"
-                                                        ),
-                                                    )
-                                                ],
-                                            )
+                                        SizedBox(height: dimensions.spacing / 2),
+                                        SizedBox(
+                                            height: dimensions.movieBoxSize,
+                                            width: dimensions.movieBoxSize,
+                                            child: PictureWidget(path: data.favoriteMovie),
                                         ),
-                                        Container(
-                                            width: 190,
-                                            padding: const EdgeInsets.all(5.0),
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(10),
-                                                color: Color(0xfdffe0dd),
-                                                border: Border.all(color: Colors.black)
-                                            ),
-                                            child:
-                                            Column(
-                                                children: [
-                                                    Text(
-                                                        "FAVORITE HOBBY",
-                                                        style: TextStyle(
-                                                            letterSpacing: 1.8,
-                                                            fontSize: 16,
-                                                            fontFamily: "WinkyMilky"
-                                                        ),
-                                                    ),
-                                                    Text(
-                                                        data.favoriteHobby,
-                                                        style: TextStyle(
-                                                            letterSpacing: 1.8,
-                                                            fontSize: 16,
-                                                            fontFamily: "WinkyMilky"
-                                                        ),
-                                                    )
-                                                ],
-                                            )
-                                        )
                                     ],
-                                ),
-                                if (data.outsidePic != null && data.favoritePic != null)
-                                    Column(
-                                        children: [
-                                            Row(
-                                                spacing: 40, children:
-                                            [
-
-                                                Container(
-                                                    alignment: Alignment.center,
-                                                    width: 170,
-                                                    decoration: BoxDecoration(
-                                                        color: Color(0xfdf8f0ed),
-                                                        border: Border.all(color: Colors
-                                                            .black),
-                                                        borderRadius: BorderRadius
-                                                            .circular(10)
-                                                    ),
-                                                    child: Text('Favorite Photo',
-                                                        style: TextStyle(
-                                                            fontSize: 24,
-                                                            fontFamily: 'WinkyMilky',
-
-                                                        ),),
-                                                ),
-
-                                                Container(
-                                                    alignment: Alignment.center,
-                                                    width: 170,
-                                                    decoration: BoxDecoration(
-                                                        color: Color(0xfdf8f0ed),
-                                                        border: Border.all(color: Colors
-                                                            .black),
-                                                        borderRadius: BorderRadius
-                                                            .circular(10)
-                                                    ),
-                                                    child: Text('Hangout Photo',
-                                                        style: TextStyle(
-                                                            fontSize: 24,
-                                                            fontFamily: 'WinkyMilky',
-
-                                                        ),),
-                                                ),
-                                            ]
-                                            ),
-                                            Row(
-                                                spacing: 40, children: [
-                                                SizedBox(
-                                                    height: 170,
-                                                    width: 170,
-                                                    child: PictureWidget(
-                                                        path: data.favoritePic!,)
-                                                ),
-                                                SizedBox(
-                                                    height: 170,
-                                                    width: 170,
-                                                    child: PictureWidget(
-                                                        path: data.outsidePic!,)
-                                                )
-                                            ],
-                                            )
-                                        ],
-                                    )
-                            ]
-                        )
-                    ],
-                )
-            )
-        );
-    }
-}
-
-class FavoriteWidget extends StatelessWidget
-{
-    const FavoriteWidget({super.key});
-
-    @override
-    Widget build(BuildContext context)
-    {
-        throw SizedBox(
-            width: 190,
-            height: 170,
-            child: Stack(
-                children: [
-                    Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            color: const Color(0xFFfeefc8),
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black.withValues(alpha: 0.5),
-                                    spreadRadius: 2,
-                                    blurRadius: 10,
-                                    offset: const Offset(4, 4),
                                 ),
                             ],
                         ),
+                        SizedBox(height: dimensions.spacing),
+
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                                BoxWidget(title: 'Zodiac Sign', path: data.zodiacSign, color: const Color(0xFFFEEFC8), d: dimensions),
+                                SizedBox(width: dimensions.spacing),
+                                BoxWidget(path: data.imagePath, title: data.name, color: const Color(0xFF96F2D7), d: dimensions),
+                            ],
+                        ),
+                        SizedBox(height: dimensions.spacing),
+
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                                _InfoBox(label: 'FAVORITE FOOD', value: data.favoriteFood, color: const Color(0xFFFFD8A8), d: dimensions),
+                                SizedBox(width: dimensions.spacing),
+                                _InfoBox(label: 'FAVORITE COLOR', value: data.favoriteColor, color: const Color(0xFFA5D8FF), d: dimensions),
+                            ],
+                        ),
+                        SizedBox(height: dimensions.spacing),
+
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                                _InfoBox(label: 'FAVORITE SONG', value: data.favoriteSong, color: const Color(0xFFD0BFFF), d: dimensions),
+                                SizedBox(width: dimensions.spacing),
+                                _InfoBox(label: 'FAVORITE HOBBY', value: data.favoriteHobby, color: const Color(0xFFFFE0DD), d: dimensions),
+                            ],
+                        ),
+
+                        if (data.favoritePic != null && data.outsidePic != null) ...[
+                            SizedBox(height: dimensions.spacing),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                    _photoColumn('Favorite Photo', data.favoritePic!, dimensions),
+                                    SizedBox(width: dimensions.spacing * 2),
+                                    _photoColumn('Hangout Photo', data.outsidePic!, dimensions),
+                                ],
+                            ),
+                        ],
+
+                        SizedBox(height: dimensions.padding),
+                    ],
+                ),
+            ),
+        );
+    }
+
+    Widget _photoColumn(String label, String path, _Dims d) 
+    {
+        return Column(
+            children: [
+                Container(
+                    alignment: Alignment.center,
+                    width: d.photoBoxSize,
+                    decoration: BoxDecoration(
+                        color: const Color(0xFFF8F0ED),
+                        border: Border.all(color: Colors.black),
+                        borderRadius: BorderRadius.circular(10),
                     ),
-                    Align(
-                        alignment: Alignment.center,
-                        child:
-                        CircleAvatar(
-                            radius: 60,
-                            foregroundImage: AssetImage('assets/taurus.png'),
-                        )
-                    )
-                ],
-            )
+                    child: Text(
+                        label,
+                        style: TextStyle(fontSize: d.labelFontSize, fontFamily: 'WinkyMilky'),
+                    ),
+                ),
+                SizedBox(height: d.spacing / 2),
+                SizedBox(
+                    height: d.photoBoxSize,
+                    width: d.photoBoxSize,
+                    child: PictureWidget(path: path),
+                ),
+            ],
         );
     }
 }
+
+class _Header extends StatelessWidget
+{
+    final _Dims d;
+    const _Header({required this.d});
+
+    @override
+    Widget build(BuildContext context) 
+    {
+        return Column(
+            children: [
+                Text(
+                    'ALL ABOUT',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Montserrat',
+                        fontSize: d.labelFontSize,
+                        fontWeight: FontWeight.w400,
+                        letterSpacing: 2.0,
+                    ),
+                ),
+                Text(
+                    'ME',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'WinkyMilky',
+                        fontSize: d.titleFontSize,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 3.0,
+                    ),
+                ),
+            ],
+        );
+    }
+}
+
+// ─── Info Box ─────────────────────────────────────────────────────────────────
+
+class _InfoBox extends StatelessWidget
+{
+    final String label;
+    final String value;
+    final Color color;
+    final _Dims d;
+
+    const _InfoBox({
+        required this.label,
+        required this.value,
+        required this.color,
+        required this.d,
+    });
+
+    @override
+    Widget build(BuildContext context) 
+    {
+        return Container(
+            width: d.cardWidth,
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: color,
+                border: Border.all(color: Colors.black),
+            ),
+            child: Column(
+                children: [
+                    Text(
+                        label,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(letterSpacing: 1.4, fontSize: d.mainFontSize, fontFamily: 'WinkyMilky'),
+                    ),
+                    Text(
+                        value,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(letterSpacing: 1.4, fontSize: d.mainFontSize, fontFamily: 'WinkyMilky'),
+                    ),
+                ],
+            ),
+        );
+    }
+}
+
+// ─── Box Widget ───────────────────────────────────────────────────────────────
 
 class BoxWidget extends StatelessWidget
 {
     final String path;
     final String title;
     final Color color;
-    const BoxWidget({super.key, required this.path, required this.title, required this.color});
+    final _Dims d;
+
+    const BoxWidget({
+        super.key,
+        required this.path,
+        required this.title,
+        required this.color,
+        required this.d,
+    });
 
     @override
-    Widget build(BuildContext context)
+    Widget build(BuildContext context) 
     {
         return SizedBox(
-            width: 190,
-            height: 170,
+            width: d.cardWidth,
+            height: d.cardWidth,
             child: Stack(
                 children: [
                     Container(
@@ -444,21 +424,24 @@ class BoxWidget extends StatelessWidget
                     ),
                     Align(
                         alignment: Alignment.topCenter,
-                        child: Text(title, style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'WinkyMilky',
-                            ),),
+                        child: Padding(
+                            padding: const EdgeInsets.only(top: 4),
+                            child: Text(
+                                title,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: d.nameFontSize, fontFamily: 'WinkyMilky'),
+                            ),
+                        ),
                     ),
                     Align(
                         alignment: Alignment.center,
-                        child:
-                        CircleAvatar(
-                            radius: 60,
+                        child: CircleAvatar(
+                            radius: d.avatarRadius,
                             foregroundImage: AssetImage(path),
-                        )
-                    )
+                        ),
+                    ),
                 ],
-            )
+            ),
         );
     }
 }
@@ -469,26 +452,27 @@ class PictureWidget extends StatelessWidget
     const PictureWidget({super.key, required this.path});
 
     @override
-    Widget build(BuildContext context)
+    Widget build(BuildContext context) 
     {
         return Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-                color: Color(0xffffe0dd),
+                color: const Color(0xFFFFE0DD),
                 border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(15), 
+                borderRadius: BorderRadius.circular(15),
                 boxShadow: [
                     BoxShadow(
                         color: Colors.black.withValues(alpha: 0.5),
                         spreadRadius: 2,
                         blurRadius: 10,
                         offset: const Offset(4, 4),
-                    ),],
+                    ),
+                ],
                 image: DecorationImage(
                     image: AssetImage(path),
-                    fit: BoxFit.fill,
-                )
-            )
+                    fit: BoxFit.cover,
+                ),
+            ),
         );
     }
 }
@@ -496,53 +480,45 @@ class PictureWidget extends StatelessWidget
 class NameTagWidget extends StatelessWidget
 {
     final String text;
+    final _Dims dimensions;
 
-    const NameTagWidget({super.key, required this.text});
+    const NameTagWidget({super.key, required this.text, required this.dimensions});
 
     @override
-    Widget build(BuildContext context)
+    Widget build(BuildContext context) 
     {
         return ClipPath(
             clipper: ArrowClipper(),
             child: Container(
-                width: 200,
-                height: 50,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                width: dimensions.cardWidth,
+                height: dimensions.cardWidth * 0.28,
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 decoration: BoxDecoration(
-                    color: Color(0xffd3eaf0), // The light background
+                    color: const Color(0xFFD3EAF0),
                     border: Border.all(color: Colors.black54),
                 ),
-                child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                        Text(
-                            text,
-                            style: TextStyle(
-                                letterSpacing: 1.1,
-                                fontSize: 16,
-                                color: Colors.black,
-                                fontFamily: 'Times New Roman'
-
-                            )
-                            ,
-                        ),
-                        const SizedBox(width: 30), // Space for the arrow point
-                    ],
+                child: Text(
+                    text,
+                    style: TextStyle(
+                        letterSpacing: 1.1,
+                        fontSize: dimensions.nameFontSize,
+                        color: Colors.black,
+                        fontFamily: 'Times New Roman',
+                    ),
                 ),
             ),
         );
     }
 }
 
-// Custom Clipper to create the arrow point on the right
 class ArrowClipper extends CustomClipper<Path>
 {
     @override
-    Path getClip(Size size)
+    Path getClip(Size size) 
     {
-        Path path = Path();
+        final path = Path();
         path.lineTo(size.width - 20, 0);
-        path.lineTo(size.width, size.height / 2); // The tip of the arrow
+        path.lineTo(size.width, size.height / 2);
         path.lineTo(size.width - 20, size.height);
         path.lineTo(0, size.height);
         path.close();
